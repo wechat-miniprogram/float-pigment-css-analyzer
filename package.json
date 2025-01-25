@@ -1,0 +1,84 @@
+{
+  "name": "float-pigment-css-analyzer",
+  "displayName": "float-pigment-css-analyzer",
+  "publisher": "wechat-miniprogram",
+  "description": "float-pigment-css diagnostic information for Visual Studio Code",
+  "version": "0.3.0-alpha.1",
+  "license": "MIT",
+  "engines": {
+    "vscode": "^1.61.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "keywords": [
+    "float-pigment",
+    "float-pigment-css"
+  ],
+  "icon": "icons/logo_256.png",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wechat-miniprogram/float-pigment"
+  },
+  "main": "./dist/extension.js",
+  "activationEvents": [
+    "onLanguage:wxss",
+    "onLanguage:css"
+  ],
+  "contributes": {
+    "configuration": {
+      "type": "object",
+      "title": "float-pigment-css-analyzer",
+      "properties": {
+        "float-pigment-css-analyzer.enabled": {
+          "scope": "window",
+          "type": "boolean",
+          "default": true,
+          "description": "Enable this language extension (can be set per workspace)."
+        },
+        "float-pigment-css-analyzer.enabledForCSS": {
+          "scope": "window",
+          "type": "boolean",
+          "default": false,
+          "description": "Enable this language extension for CSS files. (By default, only WXSS files are detected.)"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "pnpm run package",
+    "compile": "webpack",
+    "watch": "webpack --watch",
+    "package": "webpack --mode production --devtool hidden-source-map",
+    "compile-tests": "tsc -p . --outDir out",
+    "watch-tests": "tsc -p . -w --outDir out",
+    "pretest": "cargo build && pnpm run compile-tests && pnpm run compile && pnpm run lint",
+    "lint": "eslint src",
+    "test": "vscode-test"
+  },
+  "devDependencies": {
+    "@vscode/test-cli": "^0.0.10",
+    "@vscode/test-electron": "^2.4.1",
+    "@types/assert": "^1.5.11",
+    "@types/diff": "^7.0.0",
+    "@types/mocha": "^10.0.9",
+    "@types/node": "~22.9.0",
+    "@types/vscode": "^1.61.0",
+    "@typescript-eslint/eslint-plugin": "^6.6.0",
+    "@typescript-eslint/parser": "^6.6.0",
+    "eslint": "^7.17.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-config-prettier": "^8.6.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-promise": "^4.2.1",
+    "float-pigment-css": "^0.3.0",
+    "prettier": "^2.8.3",
+    "pretty-format": "^29.7.0",
+    "ts-loader": "^9.5.1",
+    "ts-node": "^10.9.2",
+    "typescript": "~5.2.2",
+    "webpack": "^5.96.1",
+    "webpack-cli": "^5.1.4"
+  }
+}
