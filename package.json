@@ -3,7 +3,7 @@
   "displayName": "float-pigment-css-analyzer",
   "publisher": "wechat-miniprogram",
   "description": "float-pigment-css diagnostic information for Visual Studio Code",
-  "version": "0.3.0-alpha.1",
+  "version": "0.1.0",
   "license": "MIT",
   "engines": {
     "vscode": "^1.61.0"
@@ -26,15 +26,35 @@
     "onLanguage:css"
   ],
   "contributes": {
+    "commands": [
+      {
+        "command": "float-pigment-css-analyzer.restart",
+        "title": "Restart float-pigment-css-analyzer"
+      }
+    ],
     "configuration": {
       "type": "object",
       "title": "float-pigment-css-analyzer",
       "properties": {
         "float-pigment-css-analyzer.enabled": {
           "scope": "window",
-          "type": "boolean",
-          "default": true,
-          "description": "Enable this language extension (can be set per workspace)."
+          "enum": [
+            "renderer",
+            "always",
+            "never"
+          ],
+          "default": "renderer",
+          "description": "When to enable the diagnostic information (can be set per workspace)."
+        },
+        "float-pigment-css-analyzer.renderer": {
+          "scope": "window",
+          "type": "array",
+          "default": [
+            "float-pigment",
+            "skyline",
+            "rect-palette"
+          ],
+          "description": "The \"renderer\" field in `app.json` or `[COMPONENT].json` that enables the diagnostic information."
         },
         "float-pigment-css-analyzer.enabledForCSS": {
           "scope": "window",
@@ -46,19 +66,17 @@
     }
   },
   "scripts": {
-    "vscode:prepublish": "pnpm run package",
+    "vscode:prepublish": "npm run package",
     "compile": "webpack",
     "watch": "webpack --watch",
     "package": "webpack --mode production --devtool hidden-source-map",
     "compile-tests": "tsc -p . --outDir out",
     "watch-tests": "tsc -p . -w --outDir out",
-    "pretest": "cargo build && pnpm run compile-tests && pnpm run compile && pnpm run lint",
+    "pretest": "npm run compile-tests && npm run compile && npm run lint",
     "lint": "eslint src",
     "test": "vscode-test"
   },
   "devDependencies": {
-    "@vscode/test-cli": "^0.0.10",
-    "@vscode/test-electron": "^2.4.1",
     "@types/assert": "^1.5.11",
     "@types/diff": "^7.0.0",
     "@types/mocha": "^10.0.9",
@@ -66,6 +84,9 @@
     "@types/vscode": "^1.61.0",
     "@typescript-eslint/eslint-plugin": "^6.6.0",
     "@typescript-eslint/parser": "^6.6.0",
+    "@vscode/test-cli": "^0.0.10",
+    "@vscode/test-electron": "^2.4.1",
+    "assert": "^2.1.0",
     "eslint": "^7.17.0",
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-config-prettier": "^8.6.0",
@@ -74,7 +95,6 @@
     "eslint-plugin-promise": "^4.2.1",
     "float-pigment-css": "^0.3.0",
     "prettier": "^2.8.3",
-    "pretty-format": "^29.7.0",
     "ts-loader": "^9.5.1",
     "ts-node": "^10.9.2",
     "typescript": "~5.2.2",

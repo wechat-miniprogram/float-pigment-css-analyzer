@@ -1,4 +1,5 @@
 {
   "glass-easel-analyzer.wxssDiagnosticsMode": "disabled",
+  "float-pigment-css-analyzer.enabled": "renderer",
   "float-pigment-css-analyzer.enabledForCSS": true
 }
