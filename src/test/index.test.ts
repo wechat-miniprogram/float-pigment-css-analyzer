@@ -21,6 +21,9 @@ suite('common', () => {
     const uri = getUri('components/index.css')
     await vscode.window.showTextDocument(uri)
     await sleep(1000)
-    assert.equal(vscode.languages.getDiagnostics(uri).length, 2)
+    const diagList = vscode.languages
+      .getDiagnostics(uri)
+      .filter((diag) => diag.source === 'float-pigment-css-analyzer')
+    assert.equal(diagList.length, 1)
   })
 })

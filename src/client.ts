@@ -106,7 +106,9 @@ export class Client {
       const range = new vscode.Range(err.startLine, err.startCol, err.endLine, err.endCol)
       const message = err.message
       const severity = vscode.DiagnosticSeverity.Warning
-      return new vscode.Diagnostic(range, message, severity)
+      const diag = new vscode.Diagnostic(range, message, severity)
+      diag.source = 'float-pigment-css-analyzer'
+      return diag
     })
     this.collection.set(uri, diagList)
   }
