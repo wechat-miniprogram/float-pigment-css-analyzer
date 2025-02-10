@@ -16,3 +16,4 @@ webpack.config.js
 **/*.ts
 **/.vscode-test.*
 build/**
+packages/**
