@@ -20,17 +20,14 @@ if (!/[0-9]+\.[0-9]+\.[0-9]+/.test(version)) {
 }
 
 // avoid eslint warnings
-;['vscode-extension'].forEach((p) => {
-  console.info(`Run eslint on ${p}`)
-  if (
-    childProcess.spawnSync('npx', ['eslint', '-c', '.eslintrc.js', 'src'], {
-      cwd: p,
-      stdio: 'inherit',
-    }).status !== 0
-  ) {
-    throw new Error('failed to lint modules (are there eslint warnings or errors?)')
-  }
-})
+console.info(`Run eslint`)
+if (
+  childProcess.spawnSync('npx', ['eslint', '-c', '.eslintrc.js', 'src'], {
+    stdio: 'inherit',
+  }).status !== 0
+) {
+  throw new Error('failed to lint modules (are there eslint warnings or errors?)')
+}
 
 // check git status
 const gitStatusRes = childProcess.spawnSync('git', ['diff', '--name-only'], { encoding: 'utf8' })
