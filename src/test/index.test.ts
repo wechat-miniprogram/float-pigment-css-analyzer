@@ -11,10 +11,16 @@ const getUri = (rel: string) => {
   return uri
 }
 
+const sleep = (ms: number): Promise<void> =>
+  new Promise((resolve) => {
+    setTimeout(resolve, ms)
+  })
+
 suite('common', () => {
   test('diagnostics for CSS', async () => {
     const uri = getUri('components/index.css')
-    await vscode.commands.executeCommand('vscode.open', uri)
+    await vscode.window.showTextDocument(uri)
+    await sleep(1000)
     assert.equal(vscode.languages.getDiagnostics(uri).length, 2)
   })
 })
