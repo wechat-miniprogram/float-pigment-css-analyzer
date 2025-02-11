@@ -13,11 +13,8 @@ jobs:
       matrix:
         include:
           - os: windows-latest
-            platform: win32
-            arch: x64
+          - os: ubuntu-latest
           - os: macos-latest
-            platform: darwin
-            arch: arm64
     runs-on: ${{ matrix.os }}
     steps:
     - uses: actions/checkout@v4
@@ -25,5 +22,7 @@ jobs:
       with:
         node-version: 20.x
         cache: 'npm'
-    - run: npm ci
+    - run: xvfb-run -a npm test
+      if: runner.os == 'Linux'
     - run: npm test
+      if: runner.os != 'Linux'
