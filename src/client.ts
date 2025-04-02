@@ -103,7 +103,7 @@ export class Client {
     const src = doc.getText()
     const ret = res.addSource(srcPath, src) as CompilationError[]
     const diagList = ret.map((err) => {
-      const range = new vscode.Range(err.startLine, err.startCol, err.endLine, err.endCol)
+      const range = new vscode.Range(err.startLine, err.startCol - 1, err.endLine, err.endCol - 1)
       const message = err.message
       const severity = vscode.DiagnosticSeverity.Warning
       const diag = new vscode.Diagnostic(range, message, severity)
