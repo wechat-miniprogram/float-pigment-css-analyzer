@@ -110,6 +110,7 @@ export class Client {
       diag.source = 'float-pigment-css-analyzer'
       return diag
     })
+    res.free()
     this.collection.set(uri, diagList)
   }
 
