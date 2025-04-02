@@ -3,7 +3,7 @@
   "displayName": "float-pigment-css-analyzer",
   "publisher": "wechat-miniprogram",
   "description": "float-pigment-css diagnostic information for Visual Studio Code",
-  "version": "0.1.1",
+  "version": "0.4.0",
   "license": "MIT",
   "engines": {
     "vscode": "^1.61.0"
@@ -94,7 +94,7 @@
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-promise": "^4.2.1",
-    "float-pigment-css": "^0.3.0",
+    "float-pigment-css": "^0.4.0",
     "prettier": "^2.8.3",
     "ts-loader": "^9.5.1",
     "ts-node": "^10.9.2",
