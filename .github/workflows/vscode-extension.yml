@@ -22,8 +22,8 @@ jobs:
             - recursive: true
               args: [--frozen-lockfile, --strict-peer-dependencies]
       - run: mkdir -p packages
-      - run: npx vsce package -o packages
-      - run: npx vsce publish --packagePath packages/*.vsix
+      - run: pnpm vsce package -o packages --no-dependencies
+      - run: pnpm vsce publish --packagePath packages/*.vsix --no-dependencies
         if: success() && startsWith(github.ref, 'refs/tags/')
         env:
           VSCE_PAT: ${{ secrets.VSCE_PAT }}
