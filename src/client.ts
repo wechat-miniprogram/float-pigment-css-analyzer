@@ -45,7 +45,7 @@ export class Client {
 
   private async checkFile(uri: vscode.Uri): Promise<Uint8Array | null> {
     try {
-      return vscode.workspace.fs.readFile(uri)
+      return await vscode.workspace.fs.readFile(uri)
     } catch {
       return null
     }
