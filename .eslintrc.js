@@ -35,12 +35,7 @@ module.exports = {
       },
     },
   ],
-  extends: [
-    'eslint:recommended',
-    'airbnb-base',
-    'plugin:promise/recommended',
-    'eslint-config-prettier',
-  ],
+  extends: ['eslint:recommended', 'plugin:promise/recommended', 'eslint-config-prettier'],
   env: {
     es6: true,
     jest: true,
