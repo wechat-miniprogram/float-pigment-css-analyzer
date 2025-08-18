@@ -22,7 +22,11 @@ jobs:
       with:
         node-version: 22
         cache: 'npm'
+      env:
+        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
     - run: npm ci
+      env:
+        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
     - run: xvfb-run -a npm test
       if: runner.os == 'Linux'
     - run: npm test
